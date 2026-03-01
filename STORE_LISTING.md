@@ -38,3 +38,21 @@ Required to save the user's preference for whether the extension is currently to
 
 **`scripting`:**
 Required to support the dynamic execution of scripts if needed for advanced unblocking techniques in the future, and to support the core manifest V3 architecture.
+
+---
+
+## Notes for Certification
+
+**Test Instructions:**
+To test this extension, you can navigate to any website with an input field and observe the behavior when pasting text. 
+
+Testing steps:
+1. Ensure the extension is installed and the "Force Paste" switch is toggled to "Enabled" in the extension popup.
+2. Go to a test webpage that blocks pasting (e.g., a simple HTML page with `<input type="password" onpaste="return false;">`).
+3. Attempt to paste text into the input field. The text should paste successfully, demonstrating that the extension intercepts the paste-blocking scripts.
+4. Toggle the extension to "Disabled" via the popup, and observe that pasting is once again blocked by the page's scripts (if testing on a blocking page).
+
+**Additional Notes:**
+- The extension operates entirely locally and does not require any test accounts or logins.
+- It injects a minimal content script (`content.js`) at `document_start` to ensure it can intercept the `paste` event before the website's own restrictive scripts.
+- No personal data or clipboard contents are collected, stored, or transmitted by this extension.
